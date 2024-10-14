@@ -10,7 +10,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "lua_ls", "tsserver", "angularls"
+          "lua_ls", "ts_ls", "angularls"
         }
       })
     end
@@ -24,7 +24,7 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities
       })
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities
       })
       lspconfig.angularls.setup({
@@ -37,6 +37,7 @@ return {
       vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
       vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+      vim.keymap.set('v', '<leader>1f', vim.lsp.buf.format, {})
     end
   }
 }

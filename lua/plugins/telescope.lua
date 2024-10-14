@@ -17,6 +17,8 @@ return {
         builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
       end, {})
       vim.keymap.set("n", "<leader>o", builtin.oldfiles, {})
+      vim.keymap.set("n", "<leader>k", builtin.keymaps, {})
+      vim.keymap.set("n", "<leader>gf", builtin.git_files, {})
     end,
   },
   {
