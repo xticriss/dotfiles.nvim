@@ -13,16 +13,46 @@ return {
 		vim.keymap.set("n", "<C-b>", ":Neotree buffers reveal float <CR>", {})
 		vim.keymap.set("n", "<leader>ge", ":Neotree git_status reveal float <CR>", {})
 		require("neo-tree").setup({
+			filesystem = {
+				commands = {
+					avante_add_files = function(state)
+						local node = state.tree:get_node()
+						local filepath = node:get_id()
+						local relative_path = require("avante.utils").relative_path(filepath)
+
+						local sidebar = require("avante").get()
+
+						local open = sidebar:is_open()
+						-- ensure avante sidebar is open
+						if not open then
+							require("avante.api").ask()
+							sidebar = require("avante").get()
+						end
+
+						sidebar.file_selector:add_selected_file(relative_path)
+
+						-- remove neo tree buffer
+						if not open then
+							sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+						end
+					end,
+				},
+				window = {
+					mappings = {
+						["<C-a>"] = "avante_add_files",
+					},
+				},
+			},
 			popup_border_style = "rounded",
 			window = {
 				position = "float",
 				popup = { -- settings that apply to float position only
 					size = { height = "65%", width = "35%" },
 					position = "50%", -- 50% means center it
-				  border = {
-            style = "rounded",
-          },
-        },
+					border = {
+						style = "rounded",
+					},
+				},
 			},
 			default_component_configs = {
 				indent = {
