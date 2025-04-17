@@ -4,6 +4,10 @@ return {
 	},
 	{
 		"github/copilot.vim",
+		config = function()
+			-- Add keybinding to toggle Copilot on/off
+			vim.keymap.set("n", "<leader>tc", ":Copilot toggle<CR>", { noremap = true, silent = true, desc = "Toggle Copilot" })
+		end,
 	},
 	{
 		"L3MON4D3/LuaSnip",
