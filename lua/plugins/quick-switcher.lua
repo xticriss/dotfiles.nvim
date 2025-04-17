@@ -36,7 +36,7 @@ return {
 
 				-- Angular
 				if is_angular then
-					print("Angular")
+					-- Removed print statement that was causing startup message
 					vim.keymap.set("n", "<leader>oo", find(".component.html"), opts)
 					vim.keymap.set("n", "<leader>ou", find(".component.ts"), opts)
 					vim.keymap.set("n", "<leader>op", find(".module.ts"), opts)
