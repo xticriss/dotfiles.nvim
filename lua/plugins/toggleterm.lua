@@ -1,5 +1,5 @@
 return {
-  { "akinsho/togglEterm.nvim",
+  { "akinsho/toggleterm.nvim",
     version = "*",
     opts = {
       open_mapping = [[\]],

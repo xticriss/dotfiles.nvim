@@ -8,8 +8,8 @@ return {
 	},
 	config = function()
 		vim.keymap.set("n", "<C-m>", ":Neotree filesystem reveal float toggle <CR>", {})
-		vim.keymap.set("n", "<C-n", ":Neotree filesystem reveal float <CR>")
-		vim.keymap.set("n", "<C-n>", ":Neotree right focus <CR>", {})
+		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal float <CR>", {})
+		-- Removed duplicate keybinding for <C-n>
 		vim.keymap.set("n", "<C-b>", ":Neotree buffers reveal float <CR>", {})
 		vim.keymap.set("n", "<leader>ge", ":Neotree git_status reveal float <CR>", {})
 		require("neo-tree").setup({

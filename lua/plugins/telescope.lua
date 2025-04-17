@@ -19,6 +19,7 @@ return {
 			vim.keymap.set("n", "<leader>o", builtin.oldfiles, {})
 			vim.keymap.set("n", "<leader>k", builtin.keymaps, {})
 			vim.keymap.set("n", "<leader>gf", builtin.git_files, {})
+			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 		end,
 	},
 	{
