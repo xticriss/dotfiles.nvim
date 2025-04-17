@@ -18,3 +18,6 @@ vim.cmd(":set cmdheight=0")    -- Hide command line when not in use
 -- Set leader key and color scheme
 vim.g.mapleader = " "          -- Set leader key to space
 vim.g.background = "light"     -- Set light background for color schemes
+
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
