@@ -6,7 +6,12 @@ return {
 		"github/copilot.vim",
 		config = function()
 			-- Add keybinding to toggle Copilot on/off
-			vim.keymap.set("n", "<leader>tc", ":Copilot toggle<CR>", { noremap = true, silent = true, desc = "Toggle Copilot" })
+			vim.keymap.set(
+				"n",
+				"<leader>tc",
+				":Copilot toggle<CR>",
+				{ noremap = true, silent = true, desc = "Toggle Copilot" }
+			)
 		end,
 	},
 	{
@@ -15,7 +20,7 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
-    run = "make install_jsregexp"
+		run = "make install_jsregexp",
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -63,9 +68,9 @@ return {
 			require("lspconfig")["ts_ls"].setup({
 				capabilities = capabilities,
 			})
-      require("lspconfig")["angularls"].setup({
-        capabilities = capabilities,
-      })
-    end,
+			require("lspconfig")["angularls"].setup({
+				capabilities = capabilities,
+			})
+		end,
 	},
 }

@@ -21,10 +21,10 @@ return {
 		},
 		gemini = {
 			-- @see https://ai.google.dev/gemini-api/docs/models/gemini
-			model = "gemini-1.5-pro-exp-0827",
+			model = "gemini-2.5-pro-exp-03-25",
 			-- model = "gemini-1.5-flash",
 			temperature = 0,
-			max_tokens = 4096,
+			max_tokens = 8096,
 		},
 		behaviour = {
 			auto_suggestions = false,
@@ -34,7 +34,7 @@ return {
 			support_paste_from_clipboard = false,
 			minimize_diff = true,
 			enable_token_counting = true,
-			enable_cursor_planning_mode = false,
+			enable_cursor_planning_mode = true,
 			enable_claude_text_editor_tool_mode = true,
 		},
 		mappings = {

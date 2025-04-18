@@ -1,31 +1,18 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
-		dependencies = { "nvim-lua/plenary.nvim" },
+
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
+		},
 		config = function()
+			local telescope = require("telescope")
 			local builtin = require("telescope.builtin")
 			local utils = require("telescope.utils")
 
-			vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-			vim.keymap.set("n", "<leader>ff", function()
-				builtin.find_files({ cwd = utils.buffer_dir() })
-			end, {})
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-			vim.keymap.set("n", "<leader>b", function()
-				builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
-			end, {})
-			vim.keymap.set("n", "<leader>o", builtin.oldfiles, {})
-			vim.keymap.set("n", "<leader>k", builtin.keymaps, {})
-			vim.keymap.set("n", "<leader>gf", builtin.git_files, {})
-			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
-		end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		config = function()
-			require("telescope").setup({
+			-- Configure Telescope itself
+			telescope.setup({
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),
@@ -39,13 +26,34 @@ return {
 						previewer = false,
 						mappings = {
 							i = {
-								["<c-d>"] = "delete_buffer",
+								["<c-d>"] = require("telescope.actions").delete_buffer, -- Use the action function directly
+							},
+							n = {
+								["<c-d>"] = require("telescope.actions").delete_buffer, -- Also add for normal mode if desired
 							},
 						},
 					},
 				},
 			})
-			require("telescope").load_extension("ui-select")
+
+			-- Load extensions
+			telescope.load_extension("ui-select")
+
+			-- Set keymaps
+			vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find Files" })
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
+			vim.keymap.set("n", "<leader>ff", function()
+				builtin.find_files({ cwd = utils.buffer_dir() })
+			end, { desc = "Find Files (Buffer Dir)" }) -- Added description
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
+			vim.keymap.set("n", "<leader>b", function()
+				builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
+			end, { desc = "Find Buffers (MRU)" }) -- Moved desc to outer table for consistency
+			vim.keymap.set("n", "<leader>o", builtin.oldfiles, { desc = "Find Old Files" })
+			vim.keymap.set("n", "<leader>k", builtin.keymaps, { desc = "Show Keymaps" })
+			vim.keymap.set("n", "<leader>k", builtin.keymaps, { desc = "Show Keymaps" })
+			vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Find Git Files" })
+			vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "Git Status" })
 		end,
 	},
 }
